@@ -1,0 +1,48 @@
+services:
+  - type: web
+    name: fruit-store-backend
+    runtime: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: DB_USER
+        fromDatabase:
+          name: fruit-store-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: fruit-store-db
+          property: password
+      - key: DB_HOST
+        fromDatabase:
+          name: fruit-store-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: fruit-store-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: fruit-store-db
+          property: database
+      - key: JWT_SECRET
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+
+  - type: web
+    name: fruit-store-frontend
+    runtime: static
+    buildCommand: echo "Static site"
+    staticPublishDir: ./frontend
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+databases:
+  - name: fruit-store-db
+    databaseName: fruit_store
+    user: fruit_store_user
+    plan: free

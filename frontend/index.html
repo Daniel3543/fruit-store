@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FruitStore - Свежие овощи и фрукты</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <h1>FruitStore</h1>
+                </div>
+                <div class="header-icons">
+                    <button class="cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <button class="admin-btn" id="adminBtn">
+                        <i class="fas fa-user-shield"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Свежие овощи и фрукты</h2>
+                <p>Напрямую от производителей с доставкой на дом</p>
+                <button class="cta-btn" id="shopNowBtn">В каталог</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Категории</h2>
+            <div class="categories-grid">
+                <button class="category-btn active" data-category="all">Все</button>
+                <button class="category-btn" data-category="Фрукты">🍎 Фрукты</button>
+                <button class="category-btn" data-category="Овощи">🥕 Овощи</button>
+                <button class="category-btn" data-category="Ягоды">🍓 Ягоды</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products">
+        <div class="container">
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <div class="cart-header">
+                <h3>Ваша корзина</h3>
+                <button class="close-cart">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be loaded here -->
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Итого:</span>
+                    <span id="cartTotal">0</span>
+                    <span>AMD</span>
+                </div>
+                <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-modal-content">
+            <div class="checkout-header">
+                <h3>Оформление заказа</h3>
+                <button class="close-checkout">&times;</button>
+            </div>
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="customerName">Ваше имя *</label>
+                    <input type="text" id="customerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">Телефон *</label>
+                    <input type="tel" id="customerPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">Адрес доставки *</label>
+                    <textarea id="customerAddress" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="paymentMethod">Способ оплаты *</label>
+                    <select id="paymentMethod" required>
+                        <option value="card">Банковская карта (онлайн)</option>
+                        <option value="cash">Наличными при получении</option>
+                    </select>
+                </div>
+                <div class="order-summary">
+                    <h4>Ваш заказ</h4>
+                    <div id="orderSummary"></div>
+                    <div class="order-total">
+                        <strong>Итого: <span id="orderTotal">0</span> AMD</strong>
+                    </div>
+                </div>
+                <button type="submit" class="submit-order-btn">Подтвердить заказ</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="payment-modal" id="paymentModal">
+        <div class="payment-modal-content">
+            <div class="payment-header">
+                <h3>Оплата картой</h3>
+                <button class="close-payment">&times;</button>
+            </div>
+            <div id="card-element"></div>
+            <button id="paymentSubmitBtn" class="payment-submit-btn">Оплатить</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FruitStore</h4>
+                    <p>Свежие овощи и фрукты с доставкой на дом</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p><i class="fas fa-phone"></i> +374 99 123456</p>
+                    <p><i class="fas fa-envelope"></i> info@fruitstore.am</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Режим работы</h4>
+                    <p>Ежедневно: 9:00 - 21:00</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель - FruitStore</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <div class="admin-sidebar">
+            <div class="admin-logo">
+                <i class="fas fa-leaf"></i>
+                <h2>FruitStore Admin</h2>
+            </div>
+            <nav class="admin-nav">
+                <button class="nav-btn active" data-tab="dashboard">
+                    <i class="fas fa-chart-line"></i> Дашборд
+                </button>
+                <button class="nav-btn" data-tab="products">
+                    <i class="fas fa-box"></i> Товары
+                </button>
+                <button class="nav-btn" data-tab="orders">
+                    <i class="fas fa-truck"></i> Заказы
+                </button>
+                <button class="nav-btn" data-tab="statistics">
+                    <i class="fas fa-chart-bar"></i> Статистика
+                </button>
+                <button class="nav-btn" data-tab="accounting">
+                    <i class="fas fa-calculator"></i> Бухгалтерия
+                </button>
+            </nav>
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i> Выход
+            </button>
+        </div>
+        
+        <div class="admin-content">
+            <!-- Login Form -->
+            <div id="loginForm" class="admin-login-form">
+                <h2>Вход в админ-панель</h2>
+                <input type="text" id="adminUsername" placeholder="Логин">
+                <input type="password" id="adminPassword" placeholder="Пароль">
+                <button id="adminLoginBtn">Войти</button>
+            </div>
+            
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="admin-tab active">
+                <h2>Панель управления</h2>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div class="stat-info">
+                            <h3 id="totalOrders">0</h3>
+                            <p>Всего заказов</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-dollar-sign"></i>
+                        <div class="stat-info">
+                            <h3 id="totalRevenue">0</h3>
+                            <p>Выручка (AMD)</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <h3 id="uniqueCustomers">0</h3>
+                            <p>Клиентов</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-chart-line"></i>
+                        <div class="stat-info">
+                            <h3 id="avgOrder">0</h3>
+                            <p>Средний чек</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Products Tab -->
+            <div id="products" class="admin-tab">
+                <div class="tab-header">
+                    <h2>Управление товарами</h2>
+                    <button class="add-product-btn" id="addProductBtn">
+                        <i class="fas fa-plus"></i> Добавить товар
+                    </button>
+                </div>
+                <div class="products-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Изображение</th>
+                                <th>Название</th>
+                                <th>Категория</th>
+                                <th>Цена (AMD)</th>
+                                <th>Ед. изм.</th>
+                                <th>Статус</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Orders Tab -->
+            <div id="orders" class="admin-tab">
+                <h2>Управление заказами</h2>
+                <div class="orders-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Дата</th>
+                                <th>Клиент</th>
+                                <th>Телефон</th>
+                                <th>Сумма</th>
+                                <th>Статус</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Statistics Tab -->
+            <div id="statistics" class="admin-tab">
+                <h2>Статистика продаж</h2>
+                <div class="stats-filters">
+                    <select id="statsPeriod">
+                        <option value="day">За день</option>
+                        <option value="week">За неделю</option>
+                        <option value="month">За месяц</option>
+                        <option value="year">За год</option>
+                        <option value="all">За все время</option>
+                    </select>
+                    <button id="loadStatsBtn">Обновить</button>
+                </div>
+                <div class="stats-summary">
+                    <div class="summary-card">
+                        <h4>Всего заказов</h4>
+                        <p id="statsTotalOrders">0</p>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Выручка</h4>
+                        <p id="statsTotalRevenue">0 AMD</p>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Средний чек</h4>
+                        <p id="statsAvgOrder">0 AMD</p>
+                    </div>
+                </div>
+                <div class="top-products">
+                    <h3>Топ товаров</h3>
+                    <div id="topProductsList"></div>
+                </div>
+            </div>
+            
+            <!-- Accounting Tab -->
+            <div id="accounting" class="admin-tab">
+                <h2>Бухгалтерия</h2>
+                <div class="accounting-filters">
+                    <input type="date" id="startDate">
+                    <input type="date" id="endDate">
+                    <button id="calculateAccountingBtn">Рассчитать</button>
+                    <button id="exportReportBtn">Экспорт отчета</button>
+                </div>
+                <div class="accounting-summary">
+                    <div class="accounting-card">
+                        <h3>Итоговый отчет</h3>
+                        <div class="accounting-details">
+                            <p><strong>Период:</strong> <span id="reportPeriod"></span></p>
+                            <p><strong>Всего заказов:</strong> <span id="accountingTotalOrders">0</span></p>
+                            <p><strong>Общая выручка:</strong> <span id="accountingTotalRevenue">0</span> AMD</p>
+                            <p><strong>Средний чек:</strong> <span id="accountingAvgOrder">0</span> AMD</p>
+                            <p><strong>Количество уникальных клиентов:</strong> <span id="accountingUniqueCustomers">0</span></p>
+                        </div>
+                    </div>
+                    <div class="accounting-card">
+                        <h3>Детализация по дням</h3>
+                        <div id="dailyBreakdown"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="productModalTitle">Добавить товар</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label>Название товара</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label>Категория</label>
+                    <select id="productCategory" required>
+                        <option value="Фрукты">Фрукты</option>
+                        <option value="Овощи">Овощи</option>
+                        <option value="Ягоды">Ягоды</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Цена (AMD)</label>
+                    <input type="number" id="productPrice" required>
+                </div>
+                <div class="form-group">
+                    <label>Единица измерения</label>
+                    <input type="text" id="productUnit" value="кг" required>
+                </div>
+                <div class="form-group">
+                    <label>Описание</label>
+                    <textarea id="productDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Изображение</label>
+                    <input type="file" id="productImage" accept="image/*">
+                    <div id="currentImage"></div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="productActive" checked> Активен
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="admin.js"></script>
+</body>
+</html>
