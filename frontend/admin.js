@@ -1,4 +1,4 @@
-const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:5000/api' : '/api';
+const API_URL = 'https://fruit-store-backend-5ep0.onrender.com/api';
 let token = localStorage.getItem('adminToken');
 
 // Check authentication
