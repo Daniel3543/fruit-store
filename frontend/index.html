@@ -5,19 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FruitStore - Свежие овощи и фрукты</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <!-- Header -->
-    <header>
+    <header class="header">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
                     <i class="fas fa-leaf"></i>
                     <h1>FruitStore</h1>
                 </div>
-                <div class="header-icons">
+                
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Поиск товаров...">
+                </div>
+                
+                <div class="header-actions">
                     <button class="cart-icon" id="cartIcon">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">0</span>
@@ -32,11 +49,79 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-bg"></div>
         <div class="container">
             <div class="hero-content">
-                <h2>Свежие овощи и фрукты</h2>
-                <p>Напрямую от производителей с доставкой на дом</p>
-                <button class="cta-btn" id="shopNowBtn">В каталог</button>
+                <div class="hero-text">
+                    <span class="hero-badge">Свежие продукты</span>
+                    <h2>Свежие овощи и фрукты</h2>
+                    <p>Напрямую от производителей с доставкой на дом</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <i class="fas fa-truck"></i>
+                            <span>Бесплатная доставка</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-clock"></i>
+                            <span>Доставка за 2 часа</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-leaf"></i>
+                            <span>100% свежесть</span>
+                        </div>
+                    </div>
+                    <button class="cta-btn" id="shopNowBtn">
+                        В каталог <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600" alt="Fresh fruits">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-truck-fast"></i>
+                    <h3>Быстрая доставка</h3>
+                    <p>Доставка по городу за 2 часа</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Гарантия качества</h3>
+                    <p>Только свежие продукты</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Лучшие цены</h3>
+                    <p>Напрямую от производителя</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Поддержка 24/7</h3>
+                    <p>Всегда на связи</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <section class="promo-banner">
+        <div class="container">
+            <div class="promo-content">
+                <div class="promo-text">
+                    <span class="promo-tag">Акция</span>
+                    <h3>Скидка 20% на первый заказ</h3>
+                    <p>При заказе от 5000 AMD</p>
+                    <button class="promo-btn" id="promoBtn">Заказать сейчас</button>
+                </div>
+                <div class="promo-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
             </div>
         </div>
     </section>
@@ -44,12 +129,31 @@
     <!-- Categories -->
     <section class="categories">
         <div class="container">
-            <h2 class="section-title">Категории</h2>
-            <div class="categories-grid">
-                <button class="category-btn active" data-category="all">Все</button>
-                <button class="category-btn" data-category="Фрукты">🍎 Фрукты</button>
-                <button class="category-btn" data-category="Овощи">🥕 Овощи</button>
-                <button class="category-btn" data-category="Ягоды">🍓 Ягоды</button>
+            <div class="section-header">
+                <h2 class="section-title">Категории</h2>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">Все</button>
+                    <button class="filter-btn" data-filter="Фрукты">
+                        <i class="fas fa-apple-alt"></i> Фрукты
+                    </button>
+                    <button class="filter-btn" data-filter="Овощи">
+                        <i class="fas fa-carrot"></i> Овощи
+                    </button>
+                    <button class="filter-btn" data-filter="Ягоды">
+                        <i class="fas fa-berry"></i> Ягоды
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Price Filter -->
+    <section class="price-filter">
+        <div class="container">
+            <div class="filter-range">
+                <span>Цена:</span>
+                <input type="range" id="priceRange" min="0" max="2000" value="2000">
+                <span>до <span id="priceValue">2000</span> AMD</span>
             </div>
         </div>
     </section>
@@ -63,16 +167,82 @@
         </div>
     </section>
 
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Что говорят наши клиенты</h2>
+            <div class="testimonials-slider swiper">
+                <div class="swiper-wrapper">
+                    <div class="testimonial-card swiper-slide">
+                        <div class="testimonial-img">
+                            <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Client">
+                        </div>
+                        <p>"Отличные свежие овощи! Доставили быстро, качество отличное. Буду заказывать ещё!"</p>
+                        <h4>Анна С.</h4>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-card swiper-slide">
+                        <div class="testimonial-img">
+                            <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Client">
+                        </div>
+                        <p>"Очень удобный сайт, большой выбор фруктов. Рекомендую!"</p>
+                        <h4>Карен М.</h4>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-card swiper-slide">
+                        <div class="testimonial-img">
+                            <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Client">
+                        </div>
+                        <p>"Лучший магазин свежих продуктов! Всегда свежее и вкусное."</p>
+                        <h4>Мариам Г.</h4>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h3>Подпишитесь на новости</h3>
+                <p>Получайте информацию об акциях и новинках первыми</p>
+                <form id="newsletterForm">
+                    <input type="email" placeholder="Ваш email" required>
+                    <button type="submit">Подписаться</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Cart Modal -->
     <div class="cart-modal" id="cartModal">
         <div class="cart-modal-content">
             <div class="cart-header">
-                <h3>Ваша корзина</h3>
+                <h3><i class="fas fa-shopping-cart"></i> Ваша корзина</h3>
                 <button class="close-cart">&times;</button>
             </div>
-            <div class="cart-items" id="cartItems">
-                <!-- Cart items will be loaded here -->
-            </div>
+            <div class="cart-items" id="cartItems"></div>
             <div class="cart-summary">
                 <div class="cart-total">
                     <span>Итого:</span>
@@ -93,22 +263,22 @@
             </div>
             <form id="checkoutForm">
                 <div class="form-group">
-                    <label for="customerName">Ваше имя *</label>
+                    <label>Ваше имя *</label>
                     <input type="text" id="customerName" required>
                 </div>
                 <div class="form-group">
-                    <label for="customerPhone">Телефон *</label>
+                    <label>Телефон *</label>
                     <input type="tel" id="customerPhone" required>
                 </div>
                 <div class="form-group">
-                    <label for="customerAddress">Адрес доставки *</label>
+                    <label>Адрес доставки *</label>
                     <textarea id="customerAddress" rows="3" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="paymentMethod">Способ оплаты *</label>
+                    <label>Способ оплаты *</label>
                     <select id="paymentMethod" required>
-                        <option value="card">Банковская карта (онлайн)</option>
-                        <option value="cash">Наличными при получении</option>
+                        <option value="card">💳 Банковская карта (онлайн)</option>
+                        <option value="cash">💵 Наличными при получении</option>
                     </select>
                 </div>
                 <div class="order-summary">
@@ -118,7 +288,9 @@
                         <strong>Итого: <span id="orderTotal">0</span> AMD</strong>
                     </div>
                 </div>
-                <button type="submit" class="submit-order-btn">Подтвердить заказ</button>
+                <button type="submit" class="submit-order-btn">
+                    <i class="fas fa-check"></i> Подтвердить заказ
+                </button>
             </form>
         </div>
     </div>
@@ -127,7 +299,7 @@
     <div class="payment-modal" id="paymentModal">
         <div class="payment-modal-content">
             <div class="payment-header">
-                <h3>Оплата картой</h3>
+                <h3>💳 Оплата картой</h3>
                 <button class="close-payment">&times;</button>
             </div>
             <div id="card-element"></div>
@@ -135,27 +307,50 @@
         </div>
     </div>
 
+    <!-- Toast Notifications -->
+    <div id="toastContainer"></div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>FruitStore</h4>
+                    <h4><i class="fas fa-leaf"></i> FruitStore</h4>
                     <p>Свежие овощи и фрукты с доставкой на дом</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h4>Контакты</h4>
                     <p><i class="fas fa-phone"></i> +374 99 123456</p>
                     <p><i class="fas fa-envelope"></i> info@fruitstore.am</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Ереван, Армения</p>
                 </div>
                 <div class="footer-section">
                     <h4>Режим работы</h4>
-                    <p>Ежедневно: 9:00 - 21:00</p>
+                    <p>Пн-Пт: 9:00 - 21:00</p>
+                    <p>Сб-Вс: 10:00 - 20:00</p>
+                    <p>Доставка: круглосуточно</p>
                 </div>
+                <div class="footer-section">
+                    <h4>Информация</h4>
+                    <p><a href="#">О нас</a></p>
+                    <p><a href="#">Доставка и оплата</a></p>
+                    <p><a href="#">Возврат товара</a></p>
+                    <p><a href="#">Политика конфиденциальности</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FruitStore. Все права защищены.</p>
             </div>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="script.js"></script>
 </body>
